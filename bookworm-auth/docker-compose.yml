@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  bookworm-config-server:
+    image: bookworm-config-server
+    ports:
+      - "8000:8000"
+    networks:
+      - network-dev
+
+  bookworm-auth:
+    depends_on:
+      - bookworm-config-server
+      - bookworm-discovery-server
+    image: bookworm-auth
+    ports:
+      - "8081:8081"
+    environment:
+      spring.profiles.active: dev
+    networks:
+      - network-dev
+
+  bookworm-discovery-server:
+    image: bookworm-discovery-server
+    ports:
+      - "8761:8761"
+    networks:
+      - network-dev
+
+networks:
+  network-dev:
