@@ -3,4 +3,6 @@ spring:
     name: bookworm-auth
   cloud:
     config:
-      uri: http://localhost:8000
+      uri: http://bookworm-config-server:8000
+server:
+  port: 8081
