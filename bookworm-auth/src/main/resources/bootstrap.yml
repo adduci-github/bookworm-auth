@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: bookworm-auth
+  cloud:
+    config:
+      uri: http://localhost:8000
