@@ -21,6 +21,18 @@ services:
     networks:
       - network-dev
 
+  bookworm-database:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: dada
+      MYSQL_DATABASE: bookworm
+      MYSQL_USER: worm
+      MYSQL_PASSWORD: worm1234!@#$
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
   bookworm-auth:
     image: bookworm-auth
     ports:
@@ -29,6 +41,9 @@ services:
       spring.profiles.active: dev
     networks:
       - network-dev
+
+volumes:
+  mysql_data:
 
 networks:
   network-dev:
