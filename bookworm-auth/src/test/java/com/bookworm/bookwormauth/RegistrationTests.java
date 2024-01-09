@@ -6,13 +6,14 @@ import com.bookworm.bookwormauth.api.application.port.in.RegistrationUseCase;
 import com.bookworm.bookwormauth.api.application.service.RegistrationService;
 import com.bookworm.bookwormauth.simple.SimpleMessageBundle;
 import com.bookworm.bookwormauth.simple.SimpleRegistrationValidator;
+import com.bookworm.bookwormauth.simple.SimpleWormPersistenceAdapter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RegistrationTests {
     private final RegistrationUseCase registrationUseCase = new RegistrationService(
-            new SimpleRegistrationValidator(), new SimpleMessageBundle());
+            new SimpleRegistrationValidator(), new SimpleMessageBundle(), new SimpleWormPersistenceAdapter());
 
     @Test
     void registration_command_null_then_throws_exception() {

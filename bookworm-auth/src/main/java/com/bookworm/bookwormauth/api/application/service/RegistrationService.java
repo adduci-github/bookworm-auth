@@ -6,6 +6,7 @@ import com.bookworm.bookwormauth.api.application.message.MessageKey;
 import com.bookworm.bookwormauth.api.application.port.in.RegistrationUseCase;
 import com.bookworm.bookwormauth.api.application.port.out.MessageProvidePort;
 import com.bookworm.bookwormauth.api.application.port.out.ValidationPort;
+import com.bookworm.bookwormauth.api.application.port.out.WormPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class RegistrationService implements RegistrationUseCase {
     private final ValidationPort validationPort;
     private final MessageProvidePort messageProvidePort;
+    private final WormPersistencePort wormPersistencePort;
 
     @Override
     public Worm registration(Registration command) {
@@ -21,6 +23,6 @@ public class RegistrationService implements RegistrationUseCase {
             throw new IllegalArgumentException(messageProvidePort.getMessage(MessageKey.REGISTRATION_FAIL_INVALID_STRATEGY));
         }
 
-        return new Worm(1L, command.userId(), command.nickname());
+        return wormPersistencePort.persist(command);
     }
 }
