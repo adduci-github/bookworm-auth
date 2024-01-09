@@ -1,5 +1,4 @@
 package com.bookworm.bookwormauth;
-import static org.junit.jupiter.api.Assertions.*;
 
 import com.bookworm.bookwormauth.api.application.domain.Registration;
 import com.bookworm.bookwormauth.api.application.domain.Worm;
@@ -8,6 +7,8 @@ import com.bookworm.bookwormauth.api.application.service.RegistrationService;
 import com.bookworm.bookwormauth.simple.SimpleMessageBundle;
 import com.bookworm.bookwormauth.simple.SimpleRegistrationValidator;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class RegistrationTests {
     private final RegistrationUseCase registrationUseCase = new RegistrationService(

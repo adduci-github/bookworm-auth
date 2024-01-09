@@ -32,6 +32,6 @@ public class RegistrationValidator implements ValidationPort {
     }
 
     private boolean isWithinLengthLimit(String s, int minLength, int maxLength) {
-        return s.length() > minLength && s.length() < maxLength;
+        return s != null && s.length() >= minLength && s.length() <= maxLength;
     }
 }
