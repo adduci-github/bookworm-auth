@@ -1,8 +1,8 @@
 package com.bookworm.bookwormauth.api.adapter.in.web;
 
-import com.bookworm.bookwormauth.api.adapter.out.token.JwtGenerator;
-import com.bookworm.bookwormauth.api.application.domain.Token;
+import com.bookworm.bookwormauth.api.application.domain.Registration;
 import com.bookworm.bookwormauth.api.application.domain.Worm;
+import com.bookworm.bookwormauth.api.application.port.in.RegistrationUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class TestController {
-    private final JwtGenerator jwtGenerator;
+    private final RegistrationUseCase registrationUseCase;
 
     @GetMapping("/test")
-    public Token test() {
-        return jwtGenerator.generateToken(new Worm("test", "test"));
+    public Worm test() {
+        return registrationUseCase.registration(new Registration("test123", "test123123", "test"));
     }
 }
