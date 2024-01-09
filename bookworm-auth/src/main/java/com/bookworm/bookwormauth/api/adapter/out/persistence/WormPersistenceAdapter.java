@@ -22,15 +22,15 @@ public class WormPersistenceAdapter implements WormPersistencePort {
     @Override
     @Transactional
     public Worm persist(Registration registration) {
-        WormEntity wormEntity = WormEntity.of(registration);
-        Worm worm;
-
         try {
-            worm = wormRepository.save(wormEntity).toWorm();
+            return persistWormEntity(registration);
         } catch (DataIntegrityViolationException e) {
             throw new DuplicateUserIdException(messageProvidePort.getMessage(MessageKey.REGISTRATION_FAIL_DUPLICATE_USER_ID));
         }
+    }
 
-        return worm;
+    private Worm persistWormEntity(Registration registration) {
+        WormEntity wormEntity = WormEntity.of(registration);
+        return wormRepository.save(wormEntity).toWorm();
     }
 }

@@ -2,6 +2,7 @@ package com.bookworm.bookwormauth;
 
 import com.bookworm.bookwormauth.api.application.domain.Registration;
 import com.bookworm.bookwormauth.api.application.domain.Worm;
+import com.bookworm.bookwormauth.api.application.exception.DuplicateUserIdException;
 import com.bookworm.bookwormauth.api.application.port.in.RegistrationUseCase;
 import com.bookworm.bookwormauth.api.application.service.RegistrationService;
 import com.bookworm.bookwormauth.simple.SimpleMessageBundle;
@@ -19,6 +20,12 @@ class RegistrationTests {
     void registration_command_null_then_throws_exception() {
         assertThrows(IllegalArgumentException.class, () -> registrationUseCase.registration(null));
         assertEquals("REGISTRATION_FAIL_INVALID_STRATEGY", assertThrows(IllegalArgumentException.class, () -> registrationUseCase.registration(null)).getMessage());
+    }
+
+    @Test
+    void registration_duplicate_user_id_then_thorw_exception() {
+        registrationUseCase.registration(new Registration("test", "test", "test"));
+        assertThrows(DuplicateUserIdException.class, () -> registrationUseCase.registration(new Registration("test", "test", "test")));
     }
 
     @Test
