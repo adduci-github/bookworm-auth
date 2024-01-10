@@ -4,7 +4,7 @@ import com.bookworm.bookwormauth.api.application.domain.Token;
 import com.bookworm.bookwormauth.api.application.domain.Worm;
 import com.bookworm.bookwormauth.api.application.port.out.TokenGeneratePort;
 import com.bookworm.bookwormauth.config.JwtConfig;
-import com.bookworm.bookwormauth.util.DateTimeUtil;
+import com.bookworm.bookwormauth.util.DateTimeUtils;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -25,7 +25,7 @@ public class JwtGenerator implements TokenGeneratePort {
 
     @Override
     public Token generateToken(Worm worm) {
-        long now = DateTimeUtil.getCurrentEpochMilli();
+        long now = DateTimeUtils.getCurrentEpochMilli();
 
         String accessToken = generate(worm.userId(), now, now + jwtConfig.getToken().getAccess().getExpiration());
         String refreshToken = generate(worm.userId(), now, now + jwtConfig.getToken().getRefresh().getExpiration());

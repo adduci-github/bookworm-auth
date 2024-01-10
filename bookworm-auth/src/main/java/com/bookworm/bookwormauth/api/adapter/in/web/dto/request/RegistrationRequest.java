@@ -1,4 +1,4 @@
-package com.bookworm.bookwormauth.api.adapter.in.web.dto;
+package com.bookworm.bookwormauth.api.adapter.in.web.dto.request;
 
 import com.bookworm.bookwormauth.api.application.domain.Registration;
 import jakarta.validation.constraints.NotNull;
